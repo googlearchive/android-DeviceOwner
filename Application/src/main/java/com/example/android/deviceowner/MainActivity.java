@@ -16,14 +16,14 @@
 
 package com.example.android.deviceowner;
 
-import android.app.Activity;
-import android.app.Fragment;
 import android.app.admin.DevicePolicyManager;
 import android.content.Context;
 import android.os.Bundle;
+import android.support.v4.app.Fragment;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 
-public class MainActivity extends Activity {
+public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
@@ -47,7 +47,7 @@ public class MainActivity extends Activity {
     }
 
     private void showFragment(Fragment fragment) {
-        getFragmentManager().beginTransaction()
+        getSupportFragmentManager().beginTransaction()
                 .replace(R.id.container, fragment)
                 .commit();
     }
