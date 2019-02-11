@@ -57,6 +57,7 @@ public class DeviceOwnerFragment extends Fragment {
     private DevicePolicyManager mDevicePolicyManager;
 
     // View references
+    private Switch mSwitchADB;
     private Switch mSwitchAutoTime;
     private Switch mSwitchAutoTimeZone;
     private Spinner mAvailableLaunchers;
@@ -74,6 +75,10 @@ public class DeviceOwnerFragment extends Fragment {
         @Override
         public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
             switch (buttonView.getId()) {
+                case R.id.switch_ADB:
+                    setBooleanGlobalSetting(Settings.Global.ADB_ENABLED, isChecked);
+                    retrieveCurrentSettings(getActivity());
+                    break;
                 case R.id.switch_auto_time:
                     setBooleanGlobalSetting(Settings.Global.AUTO_TIME, isChecked);
                     retrieveCurrentSettings(getActivity());
@@ -126,11 +131,13 @@ public class DeviceOwnerFragment extends Fragment {
     @Override
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Retain references
+        mSwitchADB = (Switch) view.findViewById(R.id.switch_ADB);
         mSwitchAutoTime = (Switch) view.findViewById(R.id.switch_auto_time);
         mSwitchAutoTimeZone = (Switch) view.findViewById(R.id.switch_auto_time_zone);
         mAvailableLaunchers = (Spinner) view.findViewById(R.id.available_launchers);
         mButtonLauncher = (Button) view.findViewById(R.id.set_preferred_launcher);
         // Bind event handlers
+        mSwitchADB.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mSwitchAutoTime.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mSwitchAutoTimeZone.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mButtonLauncher.setOnClickListener(mOnClickListener);
@@ -165,6 +172,8 @@ public class DeviceOwnerFragment extends Fragment {
      */
     private void retrieveCurrentSettings(Activity activity) {
         // Global settings
+        setCheckedSafely(mSwitchADB,
+                getBooleanGlobalSetting(activity.getContentResolver(), Settings.Global.ADB_ENABLED));
         setCheckedSafely(mSwitchAutoTime,
                 getBooleanGlobalSetting(activity.getContentResolver(), Settings.Global.AUTO_TIME));
         setCheckedSafely(mSwitchAutoTimeZone,
