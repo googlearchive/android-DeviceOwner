@@ -41,7 +41,24 @@
             android:paddingStart="@dimen/margin_medium"
             android:text="@string/lable_adb"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
-
+        <Switch
+            android:id="@+id/switch_development_setting"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:paddingEnd="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_medium"
+            android:text="@string/lable_switch_development_setting"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+        <Switch
+            android:id="@+id/switch_stay_awake"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:paddingEnd="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_medium"
+            android:text="@string/lable_switch_stay_awake"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
         <Switch
             android:id="@+id/switch_auto_time"
             android:layout_width="wrap_content"
@@ -60,6 +77,16 @@
             android:paddingEnd="@dimen/margin_medium"
             android:paddingStart="@dimen/margin_medium"
             android:text="@string/label_auto_time_zone"
+            android:textAppearance="?android:attr/textAppearanceMedium"/>
+
+        <Button
+            android:id="@+id/button_screen_lock"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/margin_medium"
+            android:paddingEnd="@dimen/margin_medium"
+            android:paddingStart="@dimen/margin_medium"
+            android:text="@string/label_screen_lock"
             android:textAppearance="?android:attr/textAppearanceMedium"/>
 
         <Space

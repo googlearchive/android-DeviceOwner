@@ -25,8 +25,11 @@
 
     <string name="label_global_settings">Global settings</string>
     <string name="lable_adb">Turn on ADB</string>
+    <string name="lable_switch_stay_awake">Stay awake while plugged in usb(WIP)</string>
+    <string name="lable_switch_development_setting">Turn on development settings(No Longer Supported)</string>
     <string name="label_auto_time">Automatic date &amp; time</string>
     <string name="label_auto_time_zone">Automatic time zone</string>
+    <string name="label_screen_lock">Choose Screen Lock</string>
 
     <string name="label_launcher">Home Launcher</string>
     <string name="set_as_preferred">Set as preferred</string>

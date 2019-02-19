@@ -58,10 +58,13 @@ public class DeviceOwnerFragment extends Fragment {
 
     // View references
     private Switch mSwitchADB;
+    private Switch mSwitchDevelopmentSetting;
+    private Switch mSwitchAwake;
     private Switch mSwitchAutoTime;
     private Switch mSwitchAutoTimeZone;
     private Spinner mAvailableLaunchers;
     private Button mButtonLauncher;
+    private Button mButtonScreenLock;
 
     // Adapter for the spinner to show list of available launchers
     private LauncherAdapter mAdapter;
@@ -79,6 +82,14 @@ public class DeviceOwnerFragment extends Fragment {
                     setBooleanGlobalSetting(Settings.Global.ADB_ENABLED, isChecked);
                     retrieveCurrentSettings(getActivity());
                     break;
+                case R.id.switch_development_setting:
+                    setBooleanGlobalSetting(Settings.Global.DEVELOPMENT_SETTINGS_ENABLED, isChecked);
+                    retrieveCurrentSettings(getActivity());
+                    break;
+                case R.id.switch_stay_awake:
+                    setBooleanGlobalSetting(Settings.Global.STAY_ON_WHILE_PLUGGED_IN, isChecked);
+                    retrieveCurrentSettings(getActivity());
+                    break;
                 case R.id.switch_auto_time:
                     setBooleanGlobalSetting(Settings.Global.AUTO_TIME, isChecked);
                     retrieveCurrentSettings(getActivity());
@@ -87,6 +98,7 @@ public class DeviceOwnerFragment extends Fragment {
                     setBooleanGlobalSetting(Settings.Global.AUTO_TIME_ZONE, isChecked);
                     retrieveCurrentSettings(getActivity());
                     break;
+
             }
         }
 
@@ -108,6 +120,10 @@ public class DeviceOwnerFragment extends Fragment {
                         clearPreferredLauncher();
                     }
                     retrieveCurrentSettings(getActivity());
+                    break;
+                case R.id.button_screen_lock:
+                    Intent intent = new Intent(DevicePolicyManager.ACTION_SET_NEW_PASSWORD);
+                    startActivity(intent);
                     break;
             }
         }
@@ -132,14 +148,20 @@ public class DeviceOwnerFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         // Retain references
         mSwitchADB = (Switch) view.findViewById(R.id.switch_ADB);
+        mSwitchDevelopmentSetting = (Switch) view.findViewById(R.id.switch_development_setting);
+        mSwitchAwake = (Switch) view.findViewById(R.id.switch_ADB);
         mSwitchAutoTime = (Switch) view.findViewById(R.id.switch_auto_time);
         mSwitchAutoTimeZone = (Switch) view.findViewById(R.id.switch_auto_time_zone);
         mAvailableLaunchers = (Spinner) view.findViewById(R.id.available_launchers);
+        mButtonScreenLock = (Button) view.findViewById(R.id.button_screen_lock);
         mButtonLauncher = (Button) view.findViewById(R.id.set_preferred_launcher);
         // Bind event handlers
         mSwitchADB.setOnCheckedChangeListener(mOnCheckedChangeListener);
+        mSwitchDevelopmentSetting.setOnCheckedChangeListener(mOnCheckedChangeListener);
+        mSwitchAwake.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mSwitchAutoTime.setOnCheckedChangeListener(mOnCheckedChangeListener);
         mSwitchAutoTimeZone.setOnCheckedChangeListener(mOnCheckedChangeListener);
+        mButtonScreenLock.setOnClickListener(mOnClickListener);
         mButtonLauncher.setOnClickListener(mOnClickListener);
     }
 
